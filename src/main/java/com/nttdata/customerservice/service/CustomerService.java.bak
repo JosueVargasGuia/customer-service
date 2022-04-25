@@ -1,0 +1,25 @@
+package com.nttdata.customerservice.service;
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
+import com.nttdata.customerservice.model.Customer;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+public interface CustomerService {
+	
+<<<<<<< HEAD
+	Flux<Customer> getAllCustomers();
+	Mono<Customer> saveCustomer(Customer customer);
+	Mono<Customer> updateCustomer(Customer customer);
+	Mono<Customer> getById(String id);
+	Mono<Void> delete(String id);
+=======
+	Flux<Customer> findAll();
+	Mono<Customer> save(Customer customer);
+	Mono<Customer> update(Customer customer);
+	Mono<Customer> findById(Long id);
+	Mono<Void> delete(Long id);
+>>>>>>> main
+
+}
