@@ -1,7 +1,10 @@
 package com.nttdata.customerservice.controller;
 
+import javax.print.attribute.standard.Media;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +35,7 @@ public class CustomerController {
 		return service.findAll();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<ResponseEntity<Customer>> findById(@PathVariable("id") Long id){
 		return service.findById(id).map(_customer -> ResponseEntity.ok().body(_customer))
 				.onErrorResume(e -> {
@@ -41,7 +44,7 @@ public class CustomerController {
 				}).defaultIfEmpty(ResponseEntity.noContent().build());
 	}
 	
-	@PostMapping
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<ResponseEntity<Customer>> saveCustomer(@RequestBody Customer customer){
 		return service.save(customer).map(_customer -> ResponseEntity.ok().body(_customer)).onErrorResume(e -> {
 			log.info("Error:" + e.getMessage());
