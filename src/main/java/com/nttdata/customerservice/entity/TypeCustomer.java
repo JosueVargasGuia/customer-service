@@ -1,5 +1,5 @@
 package com.nttdata.customerservice.entity;
 
 public enum TypeCustomer {
-	personal, company
+	personal, company, VIP, PYME
 }

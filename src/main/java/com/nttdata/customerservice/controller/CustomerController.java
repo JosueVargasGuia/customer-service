@@ -54,7 +54,7 @@ public class CustomerController {
 	
 	@PutMapping
 	public Mono<ResponseEntity<Customer>> updateCustomer(@RequestBody Customer customer){
-		Mono<Customer> objCustomer = service.findById(customer.getId()).flatMap(_customer -> {
+		Mono<Customer> objCustomer = service.findById(customer.getIdCustomer()).flatMap(_customer -> {
 			log.info("Update: [new] " + customer + " [Old]: " + _customer);
 			return service.update(customer);
 		});
@@ -71,7 +71,7 @@ public class CustomerController {
 	@DeleteMapping("/{id}")
 	public Mono<ResponseEntity<Void>> deleteCustomer(@PathVariable("id") Long id){
 		return service.findById(id).flatMap(customer -> {
-			return service.delete(customer.getId()).then(Mono.just(ResponseEntity.ok().build()));
+			return service.delete(customer.getIdCustomer()).then(Mono.just(ResponseEntity.ok().build()));
 		});
 	}
 	
