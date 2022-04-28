@@ -30,7 +30,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService service;
 	
-	@GetMapping
+	@GetMapping( produces = MediaType.APPLICATION_JSON_VALUE)
 	public Flux<Customer> findAll(){
 		return service.findAll();
 	}
