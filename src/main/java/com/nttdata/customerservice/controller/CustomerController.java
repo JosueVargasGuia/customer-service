@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nttdata.customerservice.entity.Customer;
+import com.nttdata.customerservice.model.ConsolidatedCustomerProducts;
 import com.nttdata.customerservice.service.CustomerService;
 
 import lombok.extern.log4j.Log4j2;
@@ -30,7 +31,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService service;
 	
-	@GetMapping
+	@GetMapping( produces = MediaType.APPLICATION_JSON_VALUE)
 	public Flux<Customer> findAll(){
 		return service.findAll();
 	}
@@ -74,6 +75,9 @@ public class CustomerController {
 			return service.delete(customer.getIdCustomer()).then(Mono.just(ResponseEntity.ok().build()));
 		});
 	}
-	
-
+	@GetMapping(value="/summaryForProduct/{idCustomer}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Flux<ConsolidatedCustomerProducts> summaryForProduct(@PathVariable("idCustomer") Long idCustomer){
+		return service.summaryForProduct(idCustomer);
+	}
+	 
 }
