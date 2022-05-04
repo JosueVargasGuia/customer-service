@@ -1,6 +1,8 @@
 package com.nttdata.customerservice.service;
 
+ 
 import com.nttdata.customerservice.entity.Customer;
+ 
 import com.nttdata.customerservice.model.ConsolidatedCustomerProducts;
 
 import reactor.core.publisher.Flux;
@@ -18,8 +20,9 @@ public interface CustomerService {
 
 	Mono<Void> delete(Long idCustomer);
 
-	Long generateKey(String nameTable);
+	// Long generateKey(String nameTable);
 
 	Flux<ConsolidatedCustomerProducts> summaryForProduct(Long idCustomer);
 
+	
 }
