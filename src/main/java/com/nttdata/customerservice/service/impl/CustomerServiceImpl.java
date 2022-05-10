@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import com.nttdata.customerservice.FeignClient.AccountFeignClient;
 import com.nttdata.customerservice.FeignClient.CreditFeignClient;
@@ -111,6 +112,12 @@ public class CustomerServiceImpl implements CustomerService {
 		listaConso.addAll(listaCredit);
 		listaConso.forEach(e -> log.info("ConsolidatedCustomerProducts:" + e.toString()));
 		return Flux.fromIterable(listaConso);
+	}
+
+	@Override
+	public Mono<Customer> findByOne(Customer customer) {
+		// TODO Auto-generated method stub
+		return repository.findOne(Example.of(customer));
 	}
 
 }

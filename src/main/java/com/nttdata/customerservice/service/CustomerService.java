@@ -23,6 +23,7 @@ public interface CustomerService {
 	// Long generateKey(String nameTable);
 
 	Flux<ConsolidatedCustomerProducts> summaryForProduct(Long idCustomer);
-
+ 
+	Mono<Customer> findByOne(Customer customer);
 	
 }

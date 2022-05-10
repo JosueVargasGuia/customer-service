@@ -27,10 +27,11 @@ public class Customer {
 	private String lastname;
 	private String emailAddress;
 	private String phoneNumber;
+	private String imeiPhone;
 	private String homeAddress;
 	private TypeDocument typeDocument;
 	private String documentNumber;	
-	private TypeCustomer typeCustomer;
+	private TypeCustomer typeCustomer;	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss") 
 	private Date creationDate;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
