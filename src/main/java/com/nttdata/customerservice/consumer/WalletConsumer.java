@@ -12,15 +12,17 @@ import com.nttdata.customerservice.service.CustomerService;
 import com.nttdata.wallet.model.CustomerWallet;
 
 import lombok.extern.log4j.Log4j2;
-import reactor.core.publisher.Mono;
 
 @Log4j2
 @Component
 public class WalletConsumer {
+	
 	@Autowired
 	CustomerService customerService;
+	
 	@Autowired
 	KafkaTemplate<String, CustomerWallet> kafkaTemplate;
+	
 	@Value("${api.kafka-uri.customer-topic-respose}")
 	private String customerTopicRespose;
 

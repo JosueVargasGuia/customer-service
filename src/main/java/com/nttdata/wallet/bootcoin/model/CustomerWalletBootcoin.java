@@ -1,4 +1,4 @@
-package com.nttdata.wallet.model;
+package com.nttdata.wallet.bootcoin.model;
 
 import java.io.Serializable;
 
@@ -17,19 +17,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Data
-public class CustomerWallet implements Serializable {
+public class CustomerWalletBootcoin implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Long idWallet;
+	private Long idWalletBootcoin;
 	private Long idCustomer;
-	private TypeDocument typeDocument;
-	private String documentNumber;
-	private String email_address;
-	private String imeiPhone;
-	private String phone_number;
 	private String firstname;
 	private String lastname;
+	private TypeDocument typeDocument;
+	private String documentNumber;
+	private String email;
+	private String phoneNumber;
 }
