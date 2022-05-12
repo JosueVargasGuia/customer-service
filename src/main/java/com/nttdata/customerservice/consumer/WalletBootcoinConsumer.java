@@ -23,11 +23,11 @@ public class WalletBootcoinConsumer {
 	@Autowired
 	KafkaTemplate<String, CustomerWalletBootcoin> kafkaTemplate;
 	
-	@Value("${api.kafka-uri.customer-topic-respose}")
+	@Value("${api.kafka-uri.customer-topic-respose-bootcoin}")
 	private String customerTopicRespose;
 	
 	/** Metodo para registrar un customer desde WalletBootcoin */
-	@KafkaListener(topics = "${api.kafka-uri.customer-topic}", groupId = "group_id")
+	@KafkaListener(topics = "${api.kafka-uri.customer-topic-bootcoin}", groupId = "group_id")
 	public void walletBootcoinConsumer(CustomerWalletBootcoin customerWalletBootcoin) {
 		Customer customer = new Customer();
 		customer.setPhoneNumber(customerWalletBootcoin.getPhoneNumber());
@@ -48,10 +48,10 @@ public class WalletBootcoinConsumer {
 			customer.setLastname(customerWalletBootcoin.getLastname());
 			customer = this.customerService.save(customer).blockOptional().get();
 			customerWalletBootcoin.setIdCustomer(customer.getIdCustomer());
-			log.info("WalletConsumer[save]:" + customerWalletBootcoin.toString());
+			log.info("CustomerWalletBootcoin[save]:" + customerWalletBootcoin.toString());
 		} else {
 			customerWalletBootcoin.setIdCustomer(customer.getIdCustomer());
-			log.info("WalletConsumer[find]:" + customerWalletBootcoin.toString());
+			log.info("CustomerWalletBootcoin[find]:" + customerWalletBootcoin.toString());
 			log.info("customer[find]:" + customer.toString());
 		}
 		log.info("Send kafka:" + customerTopicRespose);
