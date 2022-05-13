@@ -24,7 +24,7 @@ public class WalletBootcoinConsumer {
 	KafkaTemplate<String, CustomerWalletBootcoin> kafkaTemplate;
 	
 	@Value("${api.kafka-uri.customer-topic-respose-bootcoin}")
-	private String customerTopicRespose;
+	private String customerTopicResposeBootcoin;
 	
 	/** Metodo para registrar un customer desde WalletBootcoin */
 	@KafkaListener(topics = "${api.kafka-uri.customer-topic-bootcoin}", groupId = "group_id")
@@ -54,8 +54,8 @@ public class WalletBootcoinConsumer {
 			log.info("CustomerWalletBootcoin[find]:" + customerWalletBootcoin.toString());
 			log.info("customer[find]:" + customer.toString());
 		}
-		log.info("Send kafka:" + customerTopicRespose);
-		kafkaTemplate.send(customerTopicRespose, customerWalletBootcoin);
+		log.info("Send kafka:" + customerTopicResposeBootcoin);
+		kafkaTemplate.send(customerTopicResposeBootcoin, customerWalletBootcoin);
 	}
 
 }
